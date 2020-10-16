@@ -6,15 +6,21 @@ class LogisticRegression():
         pass
 
     def sigmoid(self, vect):
-        return 1 / (1 + np.power(np.e, -z))
+        return 1 / (1 + np.exp(-vect))
 
-    def hypothesis(self, X, weights):
-        return np.matmul(X, weights, dtype=float)
+    def h(self, weights, X):
+        return self.sigmoid(np.matmul(X. weights))
 
-    def cost(self, X, y, weights):
-        m = y.shape[0]
-        return 1/m * np.sum(self._cost(X, y, weights))
+    def J(self, X, y, weights, _lambda):
+        hoX = self.h(weights, X)
+        m = y.length
+        reg_term = (_lambda / (2*m)) * np.sum(weights[1:] ** 2)
+        cost = -(1/m) * np.sum((y * np.log(hoX)) + ((1 - y)*np.log(1 - hoX)))
+        return cost + reg_term
 
-    def _cost(self, X, y, weights):
-        _hypothesis = self.hypothesis(X, weights)
-        return -y * np.log(_hypothesis) - (1 - y) * np.log(1 - _hypothesis)
+    def gradient(self, X, weights, y, _alpha, _lambda, iters):
+        m = y.length
+        for _ in range(iters):
+            hoX = h(weights, X)
+            dJ = (1/m) * np.matmul(X.T, hoX) + ((_lambda/m) * weights)
+            weights = weights - (_alpha/m) * np.matmul(X.T, )
