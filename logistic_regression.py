@@ -23,6 +23,7 @@ class LogisticRegression():
         for _ in range(iters):
             hoX = self.h(weights, X)
             dJ = (1/m) * np.matmul(X.T, hoX - y)
-            dJ[1:] = dJ[1:] + (_lambda/m)*weights[1:]
+            if _lambda != 0:
+                dJ[1:] = dJ[1:] + (_lambda/m)*weights[1:]
             weights = weights - (_alpha * dJ)
     
