@@ -30,7 +30,7 @@ class LogisticRegression():
         print(weights)
         return weights
     
-    def fit(self, X, y, lr=0.1, reg_factor=0, iters=1000):
+    def fit(self, X, y, lr=0.1, reg_factor=1, iters=100000):
         X = np.insert(X, 0, 1, axis=1)
         classes = np.unique(y)
         print(classes)
